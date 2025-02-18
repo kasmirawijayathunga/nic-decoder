@@ -23,8 +23,9 @@ class NICController extends GetxController {
 
       if (!isMale) days -= 500;
 
-      DateTime dob =
-          DateTime(int.parse(year), 1, 1).add(Duration(days: days - 1));
+      int leapYearFix = int.parse(year) / 4 == 0 ? 0 : 1;
+      DateTime dob = DateTime(int.parse(year), 1, 1)
+          .add(Duration(days: days - 1 - leapYearFix));
       String formattedDate = DateFormat('MMMM d, yyyy').format(dob);
       String dayOfWeek = DateFormat('EEEE').format(dob);
 
