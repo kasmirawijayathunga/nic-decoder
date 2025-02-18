@@ -1,3 +1,6 @@
+/// This controller handles extracting details such as
+/// birth date, gender, and age from the NIC number.
+
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +13,11 @@ class NICController extends GetxController {
   var weekDay = ''.obs;
   var nicType = ''.obs;
 
+  /// Decodes the given NIC number and extracts relevant details.
+  ///
+  /// - If the NIC is invalid, an error is displayed.
+  /// - Handles both 10-digit (Old NIC) and 12-digit (New NIC) formats.
+  /// - Accounts for leap years when calculating birth date.
   void decodeNIC(String nic) {
     if (nic.length == 10 || nic.length == 12) {
       nicType.value = nic.length == 10 ? "Old NIC" : "New NIC";
